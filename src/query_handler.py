@@ -2,9 +2,10 @@ import openai
 import numpy as np
 import os
 from vector_store import find_most_similar, get_embedding
+import streamlit as st
 
 # Load OpenAI API key
-openai.api_key = os.getenv("OPENAI_API_KEY")
+openai.api_key = st.secrets["OPENAI_API_KEY"]
 
 
 def generate_response(query, vectorized_data):
