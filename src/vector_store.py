@@ -3,9 +3,17 @@ import numpy as np
 import os
 from scipy.spatial.distance import cosine
 from data_processing import load_data  # Assuming you have a data loading function
+from dotenv import load_dotenv  # Import dotenv to load environment variables
+
+# Load .env file
+load_dotenv()  # This loads environment variables from the .env file
 
 # Load OpenAI API key
 openai.api_key = os.getenv("OPENAI_API_KEY")
+
+# Optional: Check if the API key is loaded (for debugging only)
+if not openai.api_key:
+    print("Error: OpenAI API key not found. Make sure it's set in the .env file.")
 
 def get_embedding(text):
     """Generate an embedding for a given text using OpenAI's API."""
