@@ -1,14 +1,17 @@
 import os
+import sys
 import numpy as np
 import streamlit as st
+
+
+CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
+SRC_DIR = os.path.join(CURRENT_DIR, "..", "src")
+sys.path.append(SRC_DIR)
+
 from query_handler import generate_response
 from data_processing import load_data
 from vector_store import vectorize_data, find_most_similar, get_embedding
 
-# Define paths within the frontend directory
-CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
-EMBEDDINGS_PATH = os.path.join(CURRENT_DIR, "embeddings", "vectorized_faqs.npy")
-DATA_PATH = os.path.join(CURRENT_DIR, "data", "faq_data.json")
 
 # Generate embeddings if the file doesn't exist
 if not os.path.exists(EMBEDDINGS_PATH):
