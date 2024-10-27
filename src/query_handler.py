@@ -1,13 +1,16 @@
 import openai
-from vector_store import find_most_similar, get_embedding
-import os
 import numpy as np
+import os
+from vector_store import find_most_similar, get_embedding
 
 # Load OpenAI API key
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
 
 def generate_response(query, vectorized_data):
+    """
+    Generate a response using ChatGPT based on the most similar FAQ entry retrieved.
+    """
     # Generate the query embedding
     query_embedding = get_embedding(query)
 
@@ -16,7 +19,7 @@ def generate_response(query, vectorized_data):
     question = retrieved_document["question"]
     answer = retrieved_document["answer"]
 
-    # Refined message structure with detailed guidance
+    # Prepare messages for the ChatGPT API call
     messages = [
         {"role": "system", "content": "You are a helpful and concise customer support assistant."},
         {"role": "user", "content": f"A user asked: '{query}'."},
@@ -36,7 +39,7 @@ def generate_response(query, vectorized_data):
 
 if __name__ == "__main__":
     # Load vectorized data
-    vectorized_data = np.load("../embeddings/vectorized_faqs.npy", allow_pickle=True)
+    vectorized_data = np.load("../frontend/embeddings/vectorized_faqs.npy", allow_pickle=True)
 
     # List of test queries
     test_queries = [

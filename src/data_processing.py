@@ -7,5 +7,5 @@ def load_data(file_path):
 
 if __name__ == "__main__":
     # Load data
-    data = load_data('../data/faq_data.json')
+    data = load_data('../frontend/data/faq_data.json')
     print("Loaded Data:", data)

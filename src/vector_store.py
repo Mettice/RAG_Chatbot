@@ -46,11 +46,11 @@ def find_most_similar(query_embedding, embeddings, top_n=1):
 
 if __name__ == "__main__":
     # Load the FAQ data
-    data = load_data('../data/faq_data.json')
+    data = load_data('../frontend/data/faq_data.json')
 
     # Vectorize the data
     vectorized_data = vectorize_data(data)
 
     # Save embeddings as .npy file
-    np.save("../embeddings/vectorized_faqs.npy", vectorized_data)
+    np.save("../frontend/embeddings/vectorized_faqs.npy", vectorized_data)
     print("Embeddings created and stored successfully.")

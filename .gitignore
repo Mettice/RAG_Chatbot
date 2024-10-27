@@ -21,4 +21,4 @@ Thumbs.db
 *.env
 
 # Ignore embeddings
-embeddings/
+frontend/embeddings/
