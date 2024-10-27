@@ -14,8 +14,8 @@ from data_processing import load_data
 from vector_store import vectorize_data, find_most_similar, get_embedding
 
 # Define paths within the frontend directory
-EMBEDDINGS_PATH = os.path.join(CURRENT_DIR, "embeddings", "vectorized_faqs.npy")  # Adjusted to stay within frontend
-DATA_PATH = os.path.join(CURRENT_DIR, "data", "faq_data.json")  # Adjusted for frontend/data location
+EMBEDDINGS_PATH = os.path.join(CURRENT_DIR, "embeddings", "vectorized_faqs.npy")
+DATA_PATH = os.path.join(CURRENT_DIR, "data", "faq_data.json")
 
 # Check if the FAQ data file exists
 if not os.path.exists(DATA_PATH):
