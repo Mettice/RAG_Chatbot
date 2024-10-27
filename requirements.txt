@@ -5,3 +5,4 @@ langchain
 streamlit  # or Flask, if we decide on a frontend
 flask
 scipy
+python-dotenv
