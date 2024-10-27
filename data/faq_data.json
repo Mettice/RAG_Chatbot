@@ -1,0 +1,14 @@
+[
+    {
+        "question": "What is your return policy?",
+        "answer": "Our return policy allows returns within 30 days of purchase with the original receipt."
+    },
+    {
+        "question": "How long does shipping take?",
+        "answer": "Standard shipping typically takes 5-7 business days."
+    },
+    {
+        "question": "What payment methods do you accept?",
+        "answer": "We accept credit cards, PayPal, and bank transfers."
+    }
+]
