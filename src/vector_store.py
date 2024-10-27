@@ -9,12 +9,20 @@ from dotenv import load_dotenv  # Import dotenv to load environment variables
 # Load environment variables from .env for local development
 load_dotenv()
 
-# Load OpenAI API key, using st.secrets for deployment and .env locally
+# Set the OpenAI API key from st.secrets for deployment, or .env for local
 openai.api_key = st.secrets.get("OPENAI_API_KEY") or os.getenv("OPENAI_API_KEY")
 
-# Streamlit error handling if API key is missing
+# Debugging to check where the API key is being loaded from
+if st.secrets.get("OPENAI_API_KEY"):
+    st.write("API Key found in st.secrets.")
+elif os.getenv("OPENAI_API_KEY"):
+    st.write("API Key found in .env file.")
+else:
+    st.error("OpenAI API key not found. Ensure it's set in secrets.toml for deployment or in .env locally.")
+
+# Stop execution if API key is missing
 if not openai.api_key:
-    st.error("OpenAI API key not found. Please ensure it is set in secrets.toml for deployment or in .env locally.")
+    st.stop()
 
 def get_embedding(text):
     """Generate an embedding for a given text using OpenAI's API."""
