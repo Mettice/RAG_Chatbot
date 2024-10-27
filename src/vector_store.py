@@ -17,7 +17,10 @@ if not openai.api_key:
 
 def get_embedding(text):
     """Generate an embedding for a given text using OpenAI's API."""
-    response = openai.Embedding.create(input=text, model="text-embedding-ada-002")
+    response = openai.Embedding.create(
+        model="text-embedding-ada-002",  # Ensure model compatibility
+        input=text
+    )
     return np.array(response['data'][0]['embedding'])
 
 def vectorize_data(data):
