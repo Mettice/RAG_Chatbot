@@ -1,28 +1,17 @@
 import openai
 import numpy as np
-import os
-from scipy.spatial.distance import cosine
-from data_processing import load_data  # Assuming you have a data loading function
 import streamlit as st
-from dotenv import load_dotenv  # Import dotenv to load environment variables
+from scipy.spatial.distance import cosine
+from data_processing import load_data
 
-# Load environment variables from .env for local development
-load_dotenv()
+# Set OpenAI API key from Streamlit Secrets
+openai.api_key = st.secrets.get("OPENAI_API_KEY")
 
-# Set the OpenAI API key from st.secrets for deployment, or .env for local
-openai.api_key = st.secrets.get("OPENAI_API_KEY") or os.getenv("OPENAI_API_KEY")
-
-# Debugging to check where the API key is being loaded from
-if st.secrets.get("OPENAI_API_KEY"):
-    st.write("API Key found in st.secrets.")
-elif os.getenv("OPENAI_API_KEY"):
-    st.write("API Key found in .env file.")
+# Debugging to confirm API key loading
+if openai.api_key:
+    st.write("API Key loaded from Streamlit secrets.")
 else:
-    st.error("OpenAI API key not found. Ensure it's set in secrets.toml for deployment or in .env locally.")
-
-# Stop execution if API key is missing
-if not openai.api_key:
-    st.stop()
+    st.error("OpenAI API key not found. Please set it in Streamlit Cloud's Secrets settings.")
 
 def get_embedding(text):
     """Generate an embedding for a given text using OpenAI's API."""
